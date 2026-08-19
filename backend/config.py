@@ -7,6 +7,7 @@ class Settings(BaseSettings):
     cognodb_uri: str = "bolt+s://localhost:7687"
     cognodb_user: str = "cognodb"
     cognodb_password: str = ""
+    frontend_url: str = ""
 
     class Config:
         env_file = str(Path(__file__).resolve().parent.parent / ".env")

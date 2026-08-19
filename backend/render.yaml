@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: researchgraph-api
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: COGNODB_URI
+        sync: false
+      - key: COGNODB_USER
+        sync: false
+      - key: COGNODB_PASSWORD
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
