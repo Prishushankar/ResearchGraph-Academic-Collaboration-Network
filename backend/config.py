@@ -1,17 +1,18 @@
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from functools import lru_cache
 from pathlib import Path
 
 
 class Settings(BaseSettings):
+    model_config = SettingsConfigDict(
+        env_file=str(Path(__file__).resolve().parent.parent / ".env"),
+        env_file_encoding="utf-8",
+    )
+
     cognodb_uri: str = "bolt+s://localhost:7687"
     cognodb_user: str = "cognodb"
     cognodb_password: str = ""
     frontend_url: str = ""
-
-    class Config:
-        env_file = str(Path(__file__).resolve().parent.parent / ".env")
-        env_file_encoding = "utf-8"
 
 
 @lru_cache()
